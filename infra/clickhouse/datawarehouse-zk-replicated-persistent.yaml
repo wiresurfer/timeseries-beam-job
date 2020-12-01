@@ -1,0 +1,37 @@
+apiVersion: "clickhouse.altinity.com/v1"
+kind: "ClickHouseInstallation"
+
+metadata:
+  name: "infra-metrics-01"
+
+spec:
+  defaults:
+    templates: 
+      dataVolumeClaimTemplate: default
+      podTemplate: clickhouse:20.8
+ 
+  configuration:
+    zookeeper:
+      nodes:
+      - host: zoo-entrance.kafka.svc 
+    clusters:
+      - name: replicated
+        layout:
+          shardsCount: 2
+          replicasCount: 2
+
+  templates:
+    volumeClaimTemplates:
+      - name: default
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 32Gi
+    podTemplates:
+      - name: clickhouse:20.8.7.15
+        spec:
+          containers:
+            - name: clickhouse-pod
+              image: yandex/clickhouse-server:19.6.2.11

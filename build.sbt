@@ -55,7 +55,7 @@ lazy val root: Project = project
       "com.spotify" %% "scio-bigquery" % scioVersion,
       "com.spotify" %% "scio-extra" % scioVersion,
       "com.spotify" %% "scio-tensorflow" % scioVersion,
-      "com.twitter" %% "algebird-core" % "0.1.11",
+      "com.twitter" %% "algebird-core" % "0.1.13",
       "org.scalanlp" %% "breeze" % "0.13.2",
   
   // Native libraries are not included by default. add this if you want them (as of 0.7)
